@@ -1,0 +1,20 @@
+ssing iOS Distribution signing identity for XXXXXX
+
+
+
+查看证书后发现，Develop证书和Distribution证书都提示“此证书的签发者无效”。
+
+什么是AppleWWDRCA证书？
+搜索资料发现，原因是AppleWWDRCA (Apple Worldwide Developer Relations Certification Authority) 证书过期了。
+AppleWWDRCA证书实际上就是对iOS证书（即Develop证书和Distribution证书）的授权认证，其公钥用于解密认证证书的可靠性。
+iOS以及Mac OS X系统（在安装Xcode时）将自动安装AppleWWDRCA.cer(Apple Worldwide Developer Relations Certification Authority)这个中间证书（Intermediate Certificates）。
+
+
+问题解决
+需要更新AppleWWDRCA证书。
+1.https://developer.apple.com/certificationauthority/AppleWWDRCA.cer 下载最新AppleWWDRCA证书，并双击安装。
+2.打开钥匙串，选择登录，然后选择下面的证书。
+3.选择桌面左上角的显示→显示已过期的证书。
+4.这时候你会发现一个过期的“WWDR Certificate”（Apple Worldwide Developer Relations Certification Authority），删除它。
+   有的在System的那一栏也有这个过期的“WWDR Certificate”，也一并删除它。 一定要删除多余的 
+5.再回头点击Develop证书和Distribution证书，不出意外他们都变成“此证书有效”了。
